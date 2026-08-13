@@ -1,0 +1,262 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-sans-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-display), ui-monospace, monospace;
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --color-tone-critical: var(--tone-critical);
+  --color-tone-emerging: var(--tone-emerging);
+  --color-tone-developing: var(--tone-developing);
+  --color-tone-advanced: var(--tone-advanced);
+
+  --color-panel: var(--panel);
+  --color-inset: var(--inset);
+  --color-hairline: var(--hairline);
+  /* Warm off-white band used to separate full-width sections. */
+  --color-band: var(--band);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+
+  /* Square-edged system: corners are flat by design. */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.24 0.004 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.004 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.004 60);
+  --primary: oklch(0.36 0.21 285);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.965 0.004 70);
+  --secondary-foreground: oklch(0.3 0.006 60);
+  --muted: oklch(0.965 0.004 70);
+  --muted-foreground: oklch(0.5 0.006 60);
+  --accent: oklch(0.95 0.02 285);
+  --accent-foreground: oklch(0.32 0.12 285);
+  --destructive: oklch(0.55 0.21 27);
+  --border: oklch(0.9 0.004 70);
+  --input: oklch(0.9 0.004 70);
+  --ring: oklch(0.36 0.21 285);
+
+  --tone-critical: oklch(0.55 0.2 27);
+  --tone-emerging: oklch(0.62 0.15 60);
+  --tone-developing: oklch(0.5 0.16 255);
+  --tone-advanced: oklch(0.52 0.13 160);
+
+  --panel: oklch(1 0 0);
+  --band: oklch(0.972 0.004 75);
+  --inset: oklch(0.955 0.004 75);
+  --hairline: oklch(0.89 0.004 70);
+  --ink: oklch(0.17 0.008 265);
+  --ink-foreground: oklch(0.98 0 0);
+  --shadow-panel: none;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.16 0.008 265);
+  --foreground: oklch(0.97 0.002 60);
+  --card: oklch(0.2 0.01 265);
+  --card-foreground: oklch(0.97 0.002 60);
+  --popover: oklch(0.2 0.01 265);
+  --popover-foreground: oklch(0.97 0.002 60);
+  --primary: oklch(0.7 0.17 288);
+  --primary-foreground: oklch(0.16 0.008 265);
+  --secondary: oklch(0.26 0.012 265);
+  --secondary-foreground: oklch(0.97 0.002 60);
+  --muted: oklch(0.26 0.012 265);
+  --muted-foreground: oklch(0.71 0.008 60);
+  --accent: oklch(0.3 0.05 288);
+  --accent-foreground: oklch(0.92 0.03 288);
+  --destructive: oklch(0.7 0.19 25);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.7 0.17 288);
+
+  --tone-critical: oklch(0.68 0.19 27);
+  --tone-emerging: oklch(0.78 0.14 68);
+  --tone-developing: oklch(0.68 0.15 255);
+  --tone-advanced: oklch(0.72 0.13 162);
+
+  --panel: oklch(0.2 0.01 265);
+  --band: oklch(0.185 0.009 265);
+  --inset: oklch(0.25 0.012 265);
+  --hairline: oklch(1 0 0 / 11%);
+  --ink: oklch(0.12 0.008 265);
+  --ink-foreground: oklch(0.98 0 0);
+  --shadow-panel: none;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+}
+
+@layer components {
+  /* Flat bordered surface — the single card treatment across the app. */
+  .panel {
+    background-color: var(--panel);
+    border: 1px solid var(--hairline);
+  }
+
+  /* Recessed grouping inside a panel. */
+  .inset {
+    background-color: var(--inset);
+  }
+
+  /* Small uppercase label that opens a section. */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Accent-ruled callout for a single key statement. */
+  .callout {
+    background-color: var(--panel);
+    border-left: 4px solid var(--primary);
+  }
+
+  .numeric {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Entrance motion for the question steps and the success screen. */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  .animate-step-in {
+    animation: step-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-pop-in {
+    animation: pop-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+/* ---- Printed report ------------------------------------------------------ */
+@media print {
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  :root {
+    --band: #ffffff;
+    --panel: #ffffff;
+    --hairline: #d4d4d4;
+    --inset: #f0f0f0;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Keep score colours in the PDF rather than washing them to grey. */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  main > div,
+  section {
+    padding-top: 0 !important;
+  }
+
+  /* Don't split a card or a team row across two pages. */
+  .panel,
+  article,
+  li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h2 {
+    break-after: avoid;
+  }
+
+  @page {
+    margin: 16mm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
